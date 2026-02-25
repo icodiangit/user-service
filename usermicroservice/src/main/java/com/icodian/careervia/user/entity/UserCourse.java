@@ -36,8 +36,8 @@ public class UserCourse {
 	private Integer progress;
 	
 	@Column(name = "completion_status")
-	private String completion_status;
+	private String completionStatus;
 	
 	@Column(name = "completed_at")
-	private Date completed_at;
+	private Date completedAt;
 }

@@ -22,34 +22,34 @@ public class Resume {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "resume_id", updatable = false, nullable = false)
-	private Long resume_id;
+	private Long resumeId;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
 	@Column(name = "resume_type")
-	private String resume_type;
+	private String resumeType;
 	
 	@Column(name = "drive_file_id", unique = true)
-	private String drive_file_id;
+	private String driveFileId;
 	
 	@Column(name = "derive_file_path")
-	private String derive_file_path;
+	private String deriveFilePath;
 	
 	@Column(name = "template_name")
-	private String template_name;
+	private String templateName;
 	
 	@Column(name = "version_number")
-	private Integer version_number;
+	private Integer versionNumber;
 	
 	@Column(name = "uploaded_by")
-	private String uploaded_by;
+	private String uploadedBy;
 	
 	@Column(name = "created_at")
-	private Date created_at;
+	private Date createdAt;
 	
 	@Column(name = "updated_at")
-	private Date updated_at;
+	private Date updatedAt;
 	
 }

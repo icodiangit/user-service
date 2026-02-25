@@ -19,10 +19,10 @@ public class Skill {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "skill_id", updatable = false, nullable = false)
-	private Long skill_id;
+	private Long skillId;
 	
 	@Column(name = "skill_name")
-	private String skill_name;
+	private String skillName;
 	
 	@Column(name = "category")
 	private String category;

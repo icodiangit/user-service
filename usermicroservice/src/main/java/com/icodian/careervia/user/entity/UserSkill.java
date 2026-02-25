@@ -20,7 +20,7 @@ public class UserSkill {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_skill_id", nullable = false, updatable = false)
-	private Long user_skill_id;
+	private Long userSkillId;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
@@ -31,12 +31,12 @@ public class UserSkill {
 	private Skill skill;
 	
 	@Column(name = "proficiency_level")
-	private String proficiency_level;
+	private String proficiencyLevel;
 	
 	@Column(name = "source")
 	private String source;
 	
 	@Column(name = "last_updated")
-	private Date last_updated;
+	private Date lastUpdated;
 
 }

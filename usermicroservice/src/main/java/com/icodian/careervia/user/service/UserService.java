@@ -1,47 +1,53 @@
 package com.icodian.careervia.user.service;
 
-import com.icodian.careervia.user.entity.Course;
-import com.icodian.careervia.user.entity.Resume;
-import com.icodian.careervia.user.entity.Skill;
-import com.icodian.careervia.user.entity.User;
-import com.netflix.discovery.shared.Application;
+import java.util.List;
+
+import com.icodian.careervia.user.dto.ApplicationDto;
+import com.icodian.careervia.user.dto.CourseDto;
+import com.icodian.careervia.user.dto.LoginRequestDto;
+import com.icodian.careervia.user.dto.LoginResponseDto;
+import com.icodian.careervia.user.dto.ResumeDto;
+import com.icodian.careervia.user.dto.ResumeRequestDto;
+import com.icodian.careervia.user.dto.SkillDto;
+import com.icodian.careervia.user.dto.UserCourseRequestDto;
+import com.icodian.careervia.user.dto.UserCreateRequestDto;
+import com.icodian.careervia.user.dto.UserProfileDto;
+import com.icodian.careervia.user.dto.UserProfileRequestDto;
+import com.icodian.careervia.user.dto.UserResponseDto;
+import com.icodian.careervia.user.dto.UserSkillRequestDto;
+import com.icodian.careervia.user.dto.UserUpdateRequestDto;
 
 public interface UserService {
+	//Authentication
+	LoginResponseDto login(LoginRequestDto request);
 	
-	User saveUser(User user);
+	//CRUD Opp.
+	UserResponseDto createUser(UserCreateRequestDto request);
+	UserResponseDto updateUser(Long userId, UserUpdateRequestDto request);
+	UserResponseDto getUserById(Long userId);
+	UserResponseDto getUserByEmail(String email);
+	void deleteUser(Long userId);
 	
-	User updateUser(Long id);
+	//Profile
+	UserProfileDto createOrUpdateProfile(Long userId, UserProfileRequestDto request);
 	
-	User getUserByid(Long id);
+	//Skills
+	void addSkillToUser(Long userId, UserSkillRequestDto request);
+	List<SkillDto> getUserSkills(Long userId);
+	void removeSkillFromUser(Long userId, Long skillId);
 	
-	User getUserByEmail(String email);
+	//Courses
+	void addCourseToUser(Long userId, UserCourseRequestDto request);
+	List<CourseDto> getUserCourses(Long userId);
+	void removeCourseFromUser(Long userId, Long courseId);
 	
-	User deleteUserById(Long id);
+	//Resume
+	ResumeDto addResume(Long userId, ResumeRequestDto reuqest);
+	ResumeDto updateResume(Long userId, Long resumeId, ResumeRequestDto request);
+	void deleteResume(Long userId, Long resumeId);
 	
-	Skill saveSkill(Skill skill);
-	
-	Skill updateSkill(Long id);
-	
-	Skill getSkillByUserId(Long id);
-	
-	Course saveCourse(Course course);
-	
-	Course updateCourse(Long id);
-	
-	Course getCourseById(Long id);
-	
-	Application getApplicationById(Long id);
-	
-	Resume saveResume(Resume resume);
-	
-	Resume updateResumeById(Long id);
-	
-	Resume deleteResumeById(Long id);
-	
-	Application getApplicationByUserId(Long id);
+	//Application
+	List<ApplicationDto> getUserApplication(Long userId);
 	
 	
-	
-	
-
 }
