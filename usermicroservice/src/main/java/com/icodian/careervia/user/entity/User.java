@@ -3,8 +3,13 @@ package com.icodian.careervia.user.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.icodian.careervia.user.enums.Role;
+import com.icodian.careervia.user.enums.UserStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,10 +27,10 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", updatable = false, nullable = false)
-	private Long user_id;
+	private Long userId;
 	
 	@Column(name = "full_name")
-	private String full_name;
+	private String fullName;
 	
 	@Column(name = "email", unique = true)
 	private String email;
@@ -33,14 +38,19 @@ public class User {
 	@Column(name = "phone", unique = true)
 	private String phone;
 	
-	@Column(name = "role")
-	private String role;
+	@Column(name = "password", nullable = false)
+	private String password;
 	
-	@Column(name = "status")
-	private String status;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "role", nullable = false)
+	private Role role = Role.JOB_SEEKER;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status", nullable = false)
+	private UserStatus status = UserStatus.ACTIVE;
 	
 	@Column(name = "created_at")
-	private Date created_at;
+	private Date createdAt;
 	
 	@OneToOne(mappedBy = "user")
 	private UserProfile userProfile;
@@ -52,6 +62,6 @@ public class User {
 	private List<UserCourse> userCourse;
 	
 	@OneToMany(mappedBy = "user")
-	private List<Resume> resumes;
+	private List<Resume> resume;
 	
 }

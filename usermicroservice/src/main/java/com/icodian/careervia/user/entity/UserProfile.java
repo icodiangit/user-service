@@ -20,7 +20,7 @@ public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "profile_id", updatable = false, nullable = false)
-	private Long profile_id;
+	private Long profileId;
 	
 	@OneToOne
 	@JoinColumn(name = "user_id", nullable = false)
@@ -36,9 +36,9 @@ public class UserProfile {
 	private String bio;
 	
 	@Column(name = "profile_strength")
-	private Integer profile_strength;
+	private Integer profileStrength;
 	
 	@Column(name = "updated_at")
-	private Date updated_at;
+	private Date updatedAt;
 
 }
