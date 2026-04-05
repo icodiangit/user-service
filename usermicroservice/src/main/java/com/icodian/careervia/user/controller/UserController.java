@@ -1,11 +1,6 @@
-package com.icodian.careervia.user.controller;
+																																																																																								package com.icodian.careervia.user.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,80 +20,64 @@ import com.icodian.careervia.user.dto.UserResponseDTO;
 import com.icodian.careervia.user.dto.UserUpdateRequestDTO;
 import com.icodian.careervia.user.service.UserService;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 @RequiredArgsConstructor
-@Validated
 public class UserController {
-
-	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	private final UserService userService;
 
 	// THIS IS USED FOR CREATING A NEW USER
 	@PostMapping
-	public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserCreateRequestDTO request) {
-		UserResponseDTO response = userService.createUser(request);
-		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+	public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserCreateRequestDTO request) {
+		return ResponseEntity.ok(userService.createUser(request));
 	}
 
 	// THIS IS USED TO LOGIN THE USER
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO request) {
-		LoginResponseDTO response = userService.login(request);
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+	public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO request) {
+		return ResponseEntity.ok(userService.login(request));
 	}
 
 	// GET A USER BY USER's ID
 	@GetMapping("/{userId}")
 	public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long userId) {
-		UserResponseDTO response = userService.getUserById(userId);
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		return ResponseEntity.ok(userService.getUserById(userId));
 	}
 
 	// GET A USER BY USER's EMAIL
-	@GetMapping("/email")
-	public ResponseEntity<UserResponseDTO> getUserByEmail(@RequestParam @Email String email) {
-		UserResponseDTO response = userService.getUserByEmail(email);
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+	@GetMapping
+	public ResponseEntity<UserResponseDTO> getUserByEmail(@RequestParam String email) {
+		return ResponseEntity.ok(userService.getUserByEmail(email));
 	}
 
-	// UPDATE THE USER INFO VIA THEIR ID
+	// UPDATE THE USER INFO
 	@PutMapping("/{userId}")
 	public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long userId,
-			@Valid @RequestBody UserUpdateRequestDTO request) {
-		UserResponseDTO response = userService.updateUser(userId, request);
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+			@RequestBody UserUpdateRequestDTO request) {
+		return ResponseEntity.ok(userService.updateUser(userId, request));
 	}
 
-	// DELETE THE EXISTING USER
+	// DELETE THE ALREADY EXISTING USER
 	@DeleteMapping("/{userId}")
-	public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+	public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
 		userService.deleteUser(userId);
-
-		log.info("User deleted successfully with ID: {}", userId);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok("User deleted successfully");
 	}
 
 	// GET THE USER PROFILE
 	@GetMapping("/{userId}/profile")
 	public ResponseEntity<UserProfileDTO> getUserProfile(@PathVariable Long userId) {
-		UserProfileDTO response = userService.getUserProfile(userId);
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		return ResponseEntity.ok(userService.getUserProfile(userId));
 	}
 
 	// CREATE OR UPDATE USER PROFILE
 	@PutMapping("/{userId}/profile")
 	public ResponseEntity<UserProfileDTO> updateUserProfile(@PathVariable Long userId,
-			@Valid @RequestBody UserProfileRequestDTO request) {
-
-		UserProfileDTO response = userService.createOrUpdateProfile(userId, request);
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+			@RequestBody UserProfileRequestDTO request) {
+		return ResponseEntity.ok(userService.createOrUpdateProfile(userId, request));
 	}
 
 }

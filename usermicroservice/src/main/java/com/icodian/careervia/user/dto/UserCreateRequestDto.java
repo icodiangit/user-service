@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class UserCreateRequestDTO {
 	
+	private String fullName;
+	
 	private String email;
 	
 	private String phone;

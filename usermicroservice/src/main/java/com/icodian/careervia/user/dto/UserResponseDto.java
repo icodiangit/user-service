@@ -12,8 +12,7 @@ import lombok.Data;
 public class UserResponseDTO {
 	
 	private Long userId;
-	private String firstName;
-	private String lastName;
+	private String fullName;
 	private String email;
 	private String phone;
 	private Role role;
@@ -23,6 +22,6 @@ public class UserResponseDTO {
 	private UserProfileDTO profile;
 	private List<SkillDTO> skills;
 	private List<CourseDTO> courses;
-	private List<ResumeDTO> resume;
+	private List<ResumeDTO> resumes;
 
 }
