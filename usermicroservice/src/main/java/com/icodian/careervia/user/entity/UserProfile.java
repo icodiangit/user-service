@@ -32,9 +32,6 @@ public class UserProfile {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@Column(name = "phone")
-	private String phone;
-	
 	@Column(name = "location")
 	private String location;
 	
