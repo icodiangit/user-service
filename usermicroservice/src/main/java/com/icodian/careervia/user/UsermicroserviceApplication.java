@@ -9,10 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @EnableDiscoveryClient
 @SpringBootApplication
-public class UsermicroserviceApplication {
+public class UserMicroserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UsermicroserviceApplication.class, args);
+		SpringApplication.run(UserMicroserviceApplication.class, args);
 		log.info("User Service is running at port no. 8082");
 	}
 
