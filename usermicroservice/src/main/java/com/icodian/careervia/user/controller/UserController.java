@@ -67,6 +67,7 @@ public class UserController {
 		UserResponseDTO response = userService.getUserByEmail(email);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
+	
 
 	// UPDATE THE USER INFO VIA THEIR ID
 	@PutMapping("/{userId}")

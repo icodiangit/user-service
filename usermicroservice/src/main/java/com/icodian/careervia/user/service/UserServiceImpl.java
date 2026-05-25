@@ -40,8 +40,7 @@ public class UserServiceImpl implements UserService {
 	// private final PasswordEncoder passwordEncoder;
 	private final RestTemplate restTemplate;
 	private final UserProfileRepository userProfileRepository;
-
-	// CREATE USER
+	
 	@Override
 	public UserResponseDTO createUser(UserCreateRequestDTO request) {
 
@@ -60,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
 		User savedUser = userRepository.save(user);
 
-		// CREATE USER PROFILE
+		// This creates user profile and set/update the data
 		UserProfile profile = new UserProfile();
 		profile.setUser(savedUser);
 		profile.setUpdatedAt(new Date());
@@ -71,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	// LOGIN
+	// This is responsible for the user to LOGIN 
 	@Override
 	public LoginResponseDTO login(LoginRequestDTO request) {
 
@@ -109,7 +108,7 @@ public class UserServiceImpl implements UserService {
 		return mapToUserResponseDTO(user);
 	}
 
-	// UPDATE USER
+	// UPDATE USER if ID exists else throw the exception if not
 	@Override
 	public UserResponseDTO updateUser(Long userId, UserUpdateRequestDTO request) {
 
@@ -122,7 +121,7 @@ public class UserServiceImpl implements UserService {
 		return mapToUserResponseDTO(updatedUser);
 	}
 
-	// DELETE USER
+	// DELETE USER by the userId or throw the exception accordingly
 	@Override
 	public void deleteUser(Long userId) {
 
@@ -141,7 +140,7 @@ public class UserServiceImpl implements UserService {
 		dto.setStatus(user.getStatus());
 		dto.setCreatedAt(user.getCreatedAt());
 
-		// FETCH USER PROFILE
+		// FETCH USER PROFILE and if the id != null then save the data
 		UserProfile profile = userProfileRepository.findByUserUserId(user.getUserId()).orElse(null);
 
 		if (profile != null) {

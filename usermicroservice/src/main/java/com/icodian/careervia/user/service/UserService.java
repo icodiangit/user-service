@@ -18,7 +18,8 @@ import com.icodian.careervia.user.dto.UserSkillRequestDTO;
 import com.icodian.careervia.user.dto.UserUpdateRequestDTO;
 
 public interface UserService {
-	//Login 
+	
+	//This is for exchange of data while login
 	LoginResponseDTO login(LoginRequestDTO request);
 	
 	//Creating, Updating, fetching user by their ID and fetching user by their email.
@@ -29,26 +30,26 @@ public interface UserService {
 	UserResponseDTO getUserByEmail(String email);
 	void deleteUser(Long userId);
 	
-	//Profile
+	//This is the exchange of data while creating or updating the profile, also while fetching the userProfile.
 	UserProfileDTO createOrUpdateProfile(Long userId, UserProfileRequestDTO request);
 	UserProfileDTO getUserProfile(Long userId);
 	
-	//Skills
+	//This is for adding and removing skills with skillID
 	void addSkillToUser(Long userId, UserSkillRequestDTO request);
 	List<SkillDTO> getUserSkills(Long userId);
 	void removeSkillFromUser(Long userId, Long skillId);
 	
-	//Courses
+	//This is for adding and removing the courses with courseId
 	void addCourse(Long userId, UserCourseRequestDTO request);
 	List<CourseDTO> getCourses(Long userId);
 	void removeCourse(Long userId, Long courseId);
 	
-	//Resume
+	//Adding, updating and deleting the resume with resumeId
 	ResumeDTO addResume(Long userId, ResumeRequestDTO request);
 	ResumeDTO updateResume(Long userId, Long resumeId, ResumeRequestDTO request);
 	void deleteResume(Long userId, Long resumeId);
 	
-	//Application
+	//Fetching the user application with applicationID
 	List<ApplicationDTO> getUserApplications(Long userId);
 	
 	

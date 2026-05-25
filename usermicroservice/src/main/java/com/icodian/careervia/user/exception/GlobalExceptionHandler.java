@@ -102,5 +102,16 @@ public class GlobalExceptionHandler {
 				.build();
 		return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
 	}
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<APIResponse> handleGenericException(Exception ex) {
+
+	    APIResponse apiResponse = APIResponse.builder()
+	            .message("Something went wrong")
+	            .success(false)
+	            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+	            .build();
+
+	    return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
 }

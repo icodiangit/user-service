@@ -8,6 +8,7 @@ import com.icodian.careervia.user.entity.UserProfile;
 
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
 	
+	//Finding userProfile with the userId
 	Optional<UserProfile> findByUserUserId(Long userId);
 
 }
