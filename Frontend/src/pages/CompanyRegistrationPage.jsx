@@ -1,0 +1,327 @@
+import React, { useState } from "react";
+import styles from "../styles/CompanyRegisterationPage.module.css";
+import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
+
+function CompanyRegistrationPage() {
+  const [formData, setFormData] = useState({
+    companyName: "",
+    email: "",
+    password: "",
+    industry: "",
+    location: "",
+    website: "",
+    description: "",
+    status: "active",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [successMsg, setSuccessMsg] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const validateWebsite = (url) => {
+    const pattern = new RegExp(
+      "^(https?:\\/\\/)?(www\\.)?([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\\.)+[a-zA-Z]{2,}(:\\d+)?(\\/.*)?$",
+    );
+    return pattern.test(url);
+  };
+
+  const validate = () => {
+    let tempErrors = {};
+
+    if (!formData.companyName)
+      tempErrors.companyName = "Company Name is required";
+
+    if (!formData.email) {
+      tempErrors.email = "Email is required";
+    }
+
+    if (!formData.password || formData.password.length < 8)
+      tempErrors.password =
+        "Password is required and must be at least 8 characters";
+
+    if (!formData.industry) tempErrors.industry = "Industry is required";
+
+    if (!formData.location) tempErrors.location = "Location is required";
+
+    if (!formData.website) {
+      tempErrors.website = "Website is required";
+    } else if (!validateWebsite(formData.website)) {
+      tempErrors.website = "Please enter a valid website URL";
+    }
+
+    // if (!formData.description)
+    //   tempErrors.description = "Description is required";
+
+    // if (!formData.status) tempErrors.status = "Status is required";
+
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validate()) {
+      return;
+    }
+    setShowModal(true);
+  };
+
+  const handleConfirm = async () => {
+    setShowModal(false);
+    // e.preventDefault();
+
+    // if (!validate()) {
+    //   return;
+    // }
+
+    try {
+      const response = await fetch("http://localhost:8081/api/companies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      alert("Company Registered successfully!");
+
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : {};
+
+      if (response.ok) {
+        setSuccessMsg("Company registered successfully!");
+        setFormData({
+          companyName: "",
+          email: "",
+          password: "",
+          industry: "",
+          location: "",
+          website: "",
+          description: "",
+          status: "active",
+        });
+        navigate("/login");
+        setErrors({});
+      } else {
+        setSuccessMsg(data.message || "Failed to register company");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSuccessMsg("An error occurred while registering the company");
+    }
+  };
+
+  return (
+    <div className="company-registration-page">
+      <div className={styles.companycontainer}>
+        <img src={logo} alt="Company Logo" className={styles["company-logo"]} />
+        <abbr title="CareerVia" className={styles.abbr}>
+          <h1 className={styles.mainheading}>
+            <span className={styles.highlight1}>Career</span>
+            <span className={styles.highlight2}>Via</span>
+          </h1>
+        </abbr>
+        <h3 className={styles.subheading}>Company Registration</h3>
+        <p className={styles.paragraph}>
+          Please fill out the form below to register your company.
+        </p>
+        {successMsg && <p className={styles.success}>{successMsg}</p>}
+        <form onSubmit={handleSubmit} className={styles.formgroup}>
+          <div className="col-md-12">
+            <label htmlFor="inputCompanyName" className={styles.formlabel}>
+              Company Name *
+            </label>
+            <input
+              type="text"
+              name="companyName"
+              id="inputCompanyName"
+              placeholder="Tech Solutions pvt ltd"
+              value={formData.companyName}
+              onChange={handleChange}
+              className="form-control"
+            />
+            {errors.companyName && (
+              <p className={styles["error-message"]}>{errors.companyName}</p>
+            )}
+          </div>
+
+          <div className="col-md-12">
+            <label htmlFor="inputwebsite" className={styles.formlabel}>
+              Company Website *
+            </label>
+            <input
+              type="text"
+              name="website"
+              id="inputwebsite"
+              placeholder="https://www.techsolutions.com"
+              value={formData.website}
+              onChange={handleChange}
+              className="form-control"
+            />
+            {errors.website && (
+              <p className={styles["error-message"]}>{errors.website}</p>
+            )}
+          </div>
+
+          <div className="col-md-12">
+            <label htmlFor="inputlocation" className={styles.formlabel}>
+              Company Location *
+            </label>
+            <input
+              type="text"
+              name="location"
+              id="inputlocation"
+              placeholder="City, State"
+              value={formData.location}
+              onChange={handleChange}
+              className="form-control"
+            />
+            {errors.location && (
+              <p className={styles["error-message"]}>{errors.location}</p>
+            )}
+          </div>
+
+          <div className="col-md-12">
+            <label htmlFor="inputEmail" className={styles.formlabel}>
+              Email ID *
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="inputEmail"
+              className="form-control"
+              placeholder="email@company.com"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {errors.email && (
+              <p className={styles["error-message"]}>{errors.email}</p>
+            )}
+          </div>
+
+          <div className="col-md-12">
+            <label htmlFor="inputPassword" className={styles.formlabel}>
+              Password *
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="inputPassword"
+              className="form-control"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {errors.password && (
+              <p className={styles["error-message"]}>{errors.password}</p>
+            )}
+          </div>
+
+          <div className="col-md-12">
+            <label htmlFor="inputState" className={styles.formlabel}>
+              Industry Type *
+            </label>
+            <select
+              name="industry"
+              id="inputState"
+              className={
+                formData.industry
+                  ? styles["form-control"]
+                  : styles["form-control-select"]
+              }
+              placeholder="Industry Type"
+              value={formData.industry}
+              onChange={handleChange}
+            >
+              <option value="">Select Industry</option>
+              <option value="technology">Technology</option>
+              <option value="finance">Finance</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="education">Education</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="retail">Retail</option>
+              <option value="other">Other</option>
+            </select>
+            {errors.industry && (
+              <p className={styles["error-message"]}>{errors.industry}</p>
+            )}
+          </div>
+
+          <div className="col-12">
+            <label htmlFor="inputDescription" className={styles.formlabel}>
+              Company Description
+            </label>
+            <textarea
+              name="description"
+              placeholder="Enter company description"
+              id="inputDescription"
+              className={styles["form-control"]}
+              value={formData.description}
+              onChange={handleChange}
+            />
+            {/* {errors.description && (
+            <p className="error-message">{errors.description}</p>
+          )} */}
+          </div>
+
+          {/* <div className="col-md-12">
+          <label htmlFor="inputStatus" className={styles.formlabel}>
+            Company Status:
+          </label>
+          <select
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+            className="form-control"
+          >
+            <option value="active">ACTIVE</option>
+            <option value="inactive">INACTIVE</option>
+          </select>
+          {errors.status && <p className="error-message">{errors.status}</p>}
+        </div> */}
+
+          <button type="submit" onClick={handleSubmit}>
+            Register
+          </button>
+
+          <div className="col-6">
+            <div className="form-check">
+              <label className={styles.formchecklabel} htmlFor="gridCheck">
+                Already have an account? <Link to="/login">Sign in</Link>
+              </label>
+            </div>
+          </div>
+
+          {/* Modal Popup */}
+          {showModal && (
+            <div className={styles.modalOverlay}>
+              <div className={styles.modalBox}>
+                <h2>Registration Successful</h2>
+                <p>Your account has been created successfully.</p>
+
+                <button onClick={() => handleConfirm()}>Close</button>
+              </div>
+            </div>
+          )}
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default CompanyRegistrationPage;

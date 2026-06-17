@@ -1,0 +1,217 @@
+.profile-card {
+  display: block;
+  justify-content: center;
+  width: 100%;
+  max-width: 750px;
+  background: rgba(15, 12, 12, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 0 15px rgba(0, 229, 255, 0.3),
+    0 0 40px rgba(0, 229, 255, 0.15);
+}
+
+.body {
+  padding-top: 120px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #020024, #090979, #000428);
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+/* the main card */
+.profile-container {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 120px;
+  padding: 120px 40px 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  max-width: 120px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Title spacing */
+.profile-card h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+/* Subtitle spacing */
+.profile-card p {
+  font-size: 17px;
+  color: #d6d6d6;
+  margin-bottom: 35px;
+}
+
+/* Form spacing */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Row spacing */
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.row .input-group {
+  flex: 1;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 16px 18px;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+}
+
+input::placeholder,
+textarea::placeholder,
+select {
+  color: #777;
+  font-weight: 500;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border: 1px solid #7b6dff;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 0 0 4px rgba(123, 109, 255, 0.18),
+    0 0 18px rgba(123, 109, 255, 0.35);
+
+  transform: translateY(-1px);
+}
+
+input:focus + label,
+textarea:focus + label {
+  color: #6c63ff;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f1f1f1;
+  margin-bottom: 7px;
+}
+
+/* Textarea bigger */
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* Button spacing */
+.save-btn {
+  margin-top: 10px;
+
+  padding: 16px;
+
+  border-radius: 20px;
+
+  border: none;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: white;
+
+  background: linear-gradient(90deg, #6c63ff, #9d4edd);
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px) scale(1.01);
+
+  box-shadow:
+    0 8px 20px rgba(108, 99, 255, 0.45),
+    0 0 25px rgba(157, 78, 221, 0.35);
+}
+
+.later-btn {
+  margin-top: 12px;
+
+  background: linear-gradient(90deg, #6c63ff, #9d4edd);
+
+  color: #cfcfcf;
+
+  border: none;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.later-btn:hover {
+  color: white;
+}
+
+.resume-upload {
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+
+  padding: 22px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  color: #f2f2f2;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  transition: all 0.3s ease;
+}
+
+.resume-upload:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: #7b6dff;
+
+  transform: translateY(-2px);
+}
