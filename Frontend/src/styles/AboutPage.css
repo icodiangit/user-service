@@ -1,0 +1,315 @@
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.about-page {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #eef2ff 100%);
+
+  min-height: 100vh;
+  color: #0f172a;
+  padding-top: 120px;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.about-hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  position: relative;
+}
+
+.about-hero::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 212, 255, 0.15);
+  filter: blur(120px);
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-hero h1 span {
+  background: linear-gradient(90deg, #00d4ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-hero p {
+  max-width: 850px;
+  margin: auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #64748b;
+}
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
+.about-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 60px 80px;
+}
+
+.about-card {
+  background: white;
+  border: 1px solid darkblue;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  padding: 35px;
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card h2 {
+  color: #0f172a;
+  font: bold;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: rgba(0, 212, 255, 0.12);
+  border-radius: 50%;
+  top: -40px;
+  right: -40px;
+  filter: blur(50px);
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 212, 255, 0.5);
+
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+}
+
+.about-card h2 {
+  margin-bottom: 18px;
+  font-size: 1.6rem;
+}
+
+.about-card p {
+  color: #64748b;
+  line-height: 1.8;
+  font-size: 20px;
+}
+
+/* =========================
+   JOURNEY SECTION
+========================= */
+
+.journey-section {
+  padding: 80px 60px;
+  text-align: center;
+}
+
+.journey-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  color: #0f172a;
+}
+
+.journey-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.journey-step {
+  width: 250px;
+  background: white;
+  border-radius: 24px;
+  border: 1px solid darkblue;
+  padding: 35px 25px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition: 0.4s ease;
+}
+
+.journey-step:hover {
+  transform: translateY(-10px);
+
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.35);
+}
+
+.journey-step span {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(90deg, #00d4ff, #a855f7);
+
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.journey-step h3 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.journey-step p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.journey-step h3 {
+  color: #0f172a;
+}
+
+/* =========================
+   STATS SECTION
+========================= */
+
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+
+  padding: 60px 80px;
+}
+
+.stat-card {
+  text-align: center;
+
+  padding: 40px 20px;
+
+  border-radius: 24px;
+
+  background: white;
+
+  backdrop-filter: blur(12px);
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+
+  transition: 0.4s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
+}
+
+.stat-card h2 {
+  font-size: 3rem;
+
+  background: linear-gradient(90deg, #00d4ff, #a855f7);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 12px;
+}
+
+.stat-card p {
+  color: #64748b;
+  font-size: 18px;
+}
+
+/* =========================
+   CTA SECTION
+========================= */
+
+.about-cta {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.about-cta h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.about-cta p {
+  color: #64748b;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 35px;
+  line-height: 1.8;
+}
+
+.about-cta button {
+  background: linear-gradient(90deg, #00d4ff, #a855f7);
+
+  border: none;
+
+  padding: 15px 40px;
+
+  width: 350px;
+
+  border-radius: 40px;
+
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.4s ease;
+}
+
+.about-cta button:hover {
+  transform: scale(1.05);
+
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.45);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .about-section,
+  .stats-section,
+  .journey-section {
+    padding: 40px 20px;
+  }
+
+  .about-cta h2 {
+    font-size: 2rem;
+  }
+}
