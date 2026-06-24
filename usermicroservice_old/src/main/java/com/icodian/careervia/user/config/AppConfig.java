@@ -9,9 +9,9 @@ import io.swagger.v3.oas.models.info.Info;
 
 @Configuration
 public class AppConfig {
-
+	
 	@Bean
-	RestTemplate restTemplate() {
+	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
 	

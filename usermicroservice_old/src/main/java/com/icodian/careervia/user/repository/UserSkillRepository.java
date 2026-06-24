@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.icodian.careervia.user.entity.UserSkill;
 
-public interface UserSkillRepository extends JpaRepository<UserSkill, Long>{
+public interface UserSkillRepository extends JpaRepository<UserSkill, String>{
 	
 	//Fetching skills of user by the ID
 	List<UserSkill> findByUserUserId(Long userId);
-	
+
 }
